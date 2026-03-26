@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday, Ishrat 🌸</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --blush: #f2c4ce;
+  --rose: #d4708a;
+  --deep-rose: #a64d6b;
+  --petal: #fce8ed;
+  --cream: #fdf6f0;
+  --gold: #c9956c;
+  --text: #4a2535;
+  --soft: #8c5a6e;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--cream);
+  min-height: 100vh;
+  color: var(--text);
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(242,196,206,0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(212,112,138,0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 10%, rgba(252,232,237,0.6) 0%, transparent 40%);
+  pointer-events: none; z-index: 0;
+}
+.app { position: relative; z-index: 1; }
+
+/* Petal deco */
+.petals-top { position: fixed; top: 0; left: 0; right: 0; height: 100px; pointer-events: none; overflow: hidden; }
+.petal-svg { position: absolute; opacity: 0.5; animation: petalDrift 8s infinite ease-in-out; }
+@keyframes petalDrift {
+  0%,100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+  50% { transform: translateY(15px) rotate(20deg); opacity: 0.7; }
+}
+
+/* Views */
+.view { display: none; }
+.view.active { display: flex; }
+#view-write.active, #view-organizer.active { display: block; }
+#view-reveal.active { display: block; }
+
+/* ===== LANDING ===== */
+#view-landing {
+  min-height: 100vh; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2rem; text-align: center;
+}
+.photo-frame {
+  width: 140px; height: 140px; border-radius: 50%;
+  border: 3px solid var(--blush);
+  box-shadow: 0 0 0 6px rgba(242,196,206,0.3), 0 8px 32px rgba(166,77,107,0.2);
+  overflow: hidden; margin-bottom: 1.5rem;
+  animation: floatPhoto 4s ease-in-out infinite;
+}
+@keyframes floatPhoto {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.greeting-tag {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 0.9rem; color: var(--rose); letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.main-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 7vw, 4rem);
+  color: var(--text); line-height: 1.1; margin-bottom: 0.5rem;
+}
+.main-title em { font-style: italic; color: var(--deep-rose); }
+.subtitle {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+  color: var(--soft); margin-bottom: 2.5rem; font-style: italic;
+}
+.cta-group { display: flex; flex-direction: column; gap: 0.75rem; align-items: center; width: 100%; max-width: 320px; }
+.btn-primary {
+  width: 100%; padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: white; border: none; border-radius: 50px;
+  font-family: 'Lato', sans-serif; font-size: 0.9rem; letter-spacing: 0.08em;
+  cursor: pointer; box-shadow: 0 4px 20px rgba(166,77,107,0.35); transition: all 0.3s ease;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(166,77,107,0.45); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+.btn-secondary {
+  width: 100%; padding: 0.9rem 2rem; background: transparent;
+  color: var(--deep-rose); border: 1.5px solid var(--blush);
+  border-radius: 50px; font-family: 'Lato', sans-serif; font-size: 0.9rem;
+  letter-spacing: 0.08em; cursor: pointer; transition: all 0.3s ease;
+}
+.btn-secondary:hover { background: var(--petal); border-color: var(--rose); }
+.divider-line { width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--blush), transparent); margin: 1.5rem auto; }
+
+/* ===== WRITE ===== */
+#view-write { min-height: 100vh; padding: 2rem 1.5rem; max-width: 520px; margin: 0 auto; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  color: var(--soft); font-size: 0.85rem; cursor: pointer;
+  background: none; border: none; font-family: 'Lato', sans-serif;
+  padding: 0.5rem 0; margin-bottom: 1.5rem; transition: color 0.2s;
+}
+.back-btn:hover { color: var(--deep-rose); }
+.card-header { margin-bottom: 2rem; }
+.card-header h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--text); }
+.card-header h2 em { font-style: italic; color: var(--deep-rose); }
+.card-header p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); font-size: 1rem; margin-top: 0.3rem; }
+.note-card {
+  background: white; border-radius: 16px; padding: 1.75rem;
+  box-shadow: 0 4px 30px rgba(166,77,107,0.1), 0 1px 3px rgba(166,77,107,0.08);
+  border: 1px solid rgba(242,196,206,0.4); position: relative; overflow: hidden;
+}
+.note-card::before { content: '🌸'; position: absolute; top: 1rem; right: 1.2rem; font-size: 1.4rem; opacity: 0.35; }
+.field-group { margin-bottom: 1.2rem; }
+.field-label { display: block; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); margin-bottom: 0.4rem; font-weight: 400; }
+.field-input {
+  width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--blush);
+  border-radius: 10px; font-family: 'Lato', sans-serif; font-size: 0.9rem;
+  color: var(--text); background: var(--petal); transition: border-color 0.2s; outline: none;
+}
+.field-input:focus { border-color: var(--rose); background: white; }
+textarea.field-input { resize: vertical; min-height: 130px; line-height: 1.6; }
+.privacy-note {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  background: rgba(242,196,206,0.2); border-radius: 8px;
+  padding: 0.75rem 1rem; margin-bottom: 1.5rem;
+  border-left: 3px solid var(--blush);
+}
+.privacy-note span { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); font-size: 0.95rem; line-height: 1.5; }
+.success-msg { display: none; text-align: center; padding: 2rem; }
+.success-msg .check { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text); margin-bottom: 0.5rem; }
+.success-msg p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); font-size: 1.05rem; }
+.error-msg { color: var(--rose); font-size: 0.8rem; margin-top: 0.5rem; text-align: center; display: none; }
+
+/* ===== ORGANIZER ===== */
+#view-organizer { min-height: 100vh; padding: 2rem 1.5rem; max-width: 600px; margin: 0 auto; }
+.org-header { margin-bottom: 2rem; }
+.org-header h2 { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--text); }
+.org-header p { color: var(--soft); font-size: 0.85rem; margin-top: 0.3rem; }
+.pin-gate {
+  background: white; border-radius: 16px; padding: 1.75rem;
+  box-shadow: 0 4px 24px rgba(166,77,107,0.1);
+  border: 1px solid rgba(242,196,206,0.4); text-align: center; margin-bottom: 1.5rem;
+}
+.pin-gate p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); margin-bottom: 1rem; }
+.pin-input-row { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
+.pin-digit {
+  width: 48px; height: 52px; text-align: center; font-size: 1.3rem;
+  border: 1.5px solid var(--blush); border-radius: 10px;
+  background: var(--petal); font-family: 'Playfair Display', serif;
+  color: var(--text); outline: none; -webkit-text-security: disc;
+}
+.pin-digit:focus { border-color: var(--rose); background: white; }
+.note-envelope {
+  background: white; border-radius: 14px; padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 16px rgba(166,77,107,0.08); border: 1px solid rgba(242,196,206,0.4);
+  margin-bottom: 1rem; transition: all 0.3s ease;
+}
+.note-envelope:hover { box-shadow: 0 6px 24px rgba(166,77,107,0.15); transform: translateY(-2px); }
+.note-from { font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--deep-rose); margin-bottom: 0.35rem; }
+.note-time { font-size: 0.75rem; color: var(--blush); margin-bottom: 0.6rem; }
+.note-content-blurred { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--text); line-height: 1.6; filter: blur(5px); user-select: none; transition: filter 0.5s ease; }
+.note-blur-label { font-size: 0.75rem; color: var(--rose); font-style: italic; margin-top: 0.4rem; }
+.reveal-toggle {
+  background: var(--petal); border: 1.5px solid var(--blush);
+  color: var(--rose); border-radius: 50px; padding: 0.45rem 1.1rem;
+  font-size: 0.78rem; cursor: pointer; margin-top: 0.5rem;
+  font-family: 'Lato', sans-serif; transition: all 0.2s;
+}
+.reveal-toggle:hover { background: white; border-color: var(--rose); }
+.empty-state { text-align: center; padding: 3rem 1rem; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); font-size: 1.1rem; }
+.share-section {
+  margin-top: 2rem; background: linear-gradient(135deg, rgba(242,196,206,0.3), rgba(252,232,237,0.5));
+  border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(242,196,206,0.5); text-align: center;
+}
+.share-section h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text); margin-bottom: 0.4rem; }
+.share-section p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); font-size: 0.95rem; margin-bottom: 1.25rem; }
+.share-link-box {
+  background: white; border: 1.5px solid var(--blush); border-radius: 10px;
+  padding: 0.65rem 1rem; font-size: 0.8rem; color: var(--soft);
+  word-break: break-all; margin-bottom: 0.75rem; font-family: monospace;
+}
+.btn-copy {
+  padding: 0.7rem 1.75rem; background: linear-gradient(135deg, var(--rose), var(--deep-rose));
+  color: white; border: none; border-radius: 50px; font-size: 0.85rem;
+  cursor: pointer; letter-spacing: 0.06em; transition: all 0.3s;
+}
+.btn-copy:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(166,77,107,0.35); }
+
+/* ===== REVEAL ===== */
+#view-reveal {
+  min-height: 100vh; background: linear-gradient(180deg, #fff0f3 0%, var(--cream) 100%);
+}
+.reveal-hero { display: flex; flex-direction: column; align-items: center; padding: 2.5rem 1.5rem 4rem; text-align: center; }
+.reveal-photo {
+  width: 160px; height: 160px; border-radius: 50%; object-fit: cover; object-position: top;
+  border: 4px solid white;
+  box-shadow: 0 0 0 8px rgba(242,196,206,0.4), 0 12px 40px rgba(166,77,107,0.25);
+  margin-bottom: 1.75rem; animation: floatPhoto 4s ease-in-out infinite;
+}
+.reveal-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.9rem; color: var(--rose); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.reveal-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.2rem); color: var(--text); line-height: 1.15; margin-bottom: 0.5rem; }
+.reveal-title em { font-style: italic; color: var(--deep-rose); }
+.reveal-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--soft); margin-bottom: 2.5rem; }
+.note-scroll { width: 100%; max-width: 480px; }
+.reveal-envelope {
+  background: white; border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem;
+  box-shadow: 0 4px 20px rgba(166,77,107,0.1); border: 1px solid rgba(242,196,206,0.5);
+  text-align: left; animation: envelopeIn 0.6s ease both;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes envelopeIn {
+  from { opacity: 0; transform: translateY(20px) rotate(-1deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+.reveal-from { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--deep-rose); margin-bottom: 0.5rem; }
+.reveal-note-text { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.7; color: var(--text); font-style: italic; }
+.reveal-note-photo { width: 100%; border-radius: 10px; margin-top: 1rem; max-height: 350px; object-fit: cover; border: 1px solid rgba(242,196,206,0.5); }
+.flower-divider { font-size: 1rem; letter-spacing: 0.5em; color: var(--blush); margin: 1.5rem 0; }
+.loading-dots { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--soft); text-align: center; padding: 2rem; }
+
+@media (max-width: 400px) { .main-title { font-size: 2rem; } }
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="petals-top">
+  <svg class="petal-svg" style="left:10%;animation-delay:0s" width="24" height="28" viewBox="0 0 24 28"><ellipse cx="12" cy="14" rx="7" ry="13" fill="#f2c4ce" transform="rotate(-20 12 14)"/></svg>
+  <svg class="petal-svg" style="left:30%;animation-delay:1.2s" width="18" height="22" viewBox="0 0 18 22"><ellipse cx="9" cy="11" rx="5" ry="10" fill="#fce8ed" transform="rotate(15 9 11)"/></svg>
+  <svg class="petal-svg" style="left:55%;animation-delay:0.6s" width="20" height="24" viewBox="0 0 20 24"><ellipse cx="10" cy="12" rx="6" ry="11" fill="#d4708a" opacity="0.4" transform="rotate(-10 10 12)"/></svg>
+  <svg class="petal-svg" style="left:75%;animation-delay:2s" width="16" height="20" viewBox="0 0 16 20"><ellipse cx="8" cy="10" rx="5" ry="9" fill="#f2c4ce" transform="rotate(30 8 10)"/></svg>
+  <svg class="petal-svg" style="left:90%;animation-delay:0.9s" width="14" height="18" viewBox="0 0 14 18"><ellipse cx="7" cy="9" rx="4" ry="8" fill="#fce8ed" transform="rotate(-5 7 9)"/></svg>
+</div>
+
+<div id="view-landing" class="view active">
+  <div class="photo-frame">
+    <img src="ishrat.jpg" alt="Ishrat" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22140%22 height=%22140%22><rect fill=%22%23fce8ed%22 width=%22140%22 height=%22140%22/><text x=%2250%%22 y=%2255%%22 text-anchor=%22middle%22 font-size=%2244%22>🌸</text></svg>'"/>
+  </div>
+  <div class="greeting-tag">A birthday surprise for</div>
+  <h1 class="main-title">Happy Birthday,<br><em>Ishrat</em> ✨</h1>
+  <p class="subtitle">From everyone who loves you</p>
+  <div class="cta-group">
+    <button class="btn-primary" onclick="showView('write')">💌 Leave her a note</button>
+    <button class="btn-secondary" onclick="showView('organizer')">🗂 I'm the organizer</button>
+  </div>
+  <div class="divider-line"></div>
+  <p style="font-size:0.75rem;color:var(--blush);font-style:italic;font-family:'Cormorant Garamond',serif;">Your note is private — only Ishrat will see it 🌷</p>
+</div>
+
+<div id="view-write" class="view">
+  <button class="back-btn" onclick="showView('landing')">← Back</button>
+  <div class="card-header">
+    <h2>Write to <em>Ishrat</em></h2>
+    <p>Tell her what she means to you 🌸</p>
+  </div>
+  <div class="note-card" id="note-form-area">
+    <div class="field-group">
+      <label class="field-label">Your name</label>
+      <input type="text" class="field-input" id="input-name" placeholder="e.g. Nadia, or 'Your bestie from uni'"/>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Your message</label>
+      <textarea class="field-input" id="input-message" placeholder="What do you love about her? A memory, a wish, anything from the heart..."></textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Add a photo together (Optional)</label>
+      <input type="file" class="field-input" id="input-photo" accept="image/*" style="background: white; padding: 0.5rem;" />
+    </div>
+    <div class="privacy-note">
+      <span>🔒 Your note is completely private — no one else can read it. Only Ishrat will see it when she opens her card.</span>
+    </div>
+    <button class="btn-primary" id="submit-btn" onclick="submitNote()">Send with love 🌹</button>
+    <p class="error-msg" id="write-error"></p>
+  </div>
+  <div class="success-msg" id="success-area">
+    <div class="check">🌷</div>
+    <h3>Note sealed with love!</h3>
+    <p>Ishrat will cherish this when she opens her card.</p>
+    <div style="margin-top:1.5rem;">
+      <button class="btn-secondary" style="width:auto;padding:0.7rem 1.75rem;" onclick="resetForm()">Write another note</button>
+    </div>
+  </div>
+</div>
+
+<div id="view-organizer" class="view">
+  <button class="back-btn" onclick="showView('landing')">← Back</button>
+  <div class="org-header">
+    <h2>Organizer Panel 🗝</h2>
+    <p>Collect notes, then share Ishrat's card when ready.</p>
+  </div>
+  <div class="pin-gate" id="pin-gate">
+    <p>Enter your 4-digit PIN to access the notes</p>
+    <div class="pin-input-row">
+      <input class="pin-digit" maxlength="1" type="password" id="p1" oninput="pinStep(this,'p2')" onkeydown="pinBack(event,'p1')"/>
+      <input class="pin-digit" maxlength="1" type="password" id="p2" oninput="pinStep(this,'p3')" onkeydown="pinBack(event,'p1')"/>
+      <input class="pin-digit" maxlength="1" type="password" id="p3" oninput="pinStep(this,'p4')" onkeydown="pinBack(event,'p2')"/>
+      <input class="pin-digit" maxlength="1" type="password" id="p4" oninput="pinStep(this,null)" onkeydown="pinBack(event,'p3')"/>
+    </div>
+    <button class="btn-primary" style="width:auto;padding:0.7rem 1.75rem;" onclick="checkPin()">Unlock</button>
+    <p id="pin-err" style="color:var(--rose);font-size:0.8rem;margin-top:0.5rem;display:none;">Incorrect PIN.</p>
+  </div>
+  <div id="notes-panel" style="display:none;">
+    <div id="notes-list-container"></div>
+    <div class="share-section">
+      <h3>Ready to share with Ishrat? 🎀</h3>
+      <p>Copy this link and send it to her — she'll see all her notes beautifully presented.</p>
+      <div class="share-link-box" id="share-link-text"></div>
+      <button class="btn-copy" onclick="copyLink()">Copy link</button>
+      <br>
+      <button class="btn-secondary" style="margin-top:0.75rem;width:auto;padding:0.65rem 1.5rem;font-size:0.85rem;" onclick="showView('reveal')">Preview Ishrat's card 🌸</button>
+    </div>
+  </div>
+</div>
+
+<div id="view-reveal" class="view">
+  <div class="reveal-hero">
+    <img class="reveal-photo" src="ishrat.jpg" alt="Ishrat" onerror="this.style.display='none'"/>
+    <div class="reveal-label">a love letter from your people</div>
+    <h1 class="reveal-title">Happy Birthday,<br><em>Ishrat</em> 🌹</h1>
+    <p class="reveal-sub">Open each note — they were written just for you.</p>
+    <div class="flower-divider">✿ ✾ ✿</div>
+    <div class="note-scroll" id="reveal-notes">
+      <div class="loading-dots">Loading your notes... 🌷</div>
+    </div>
+    <div class="flower-divider" style="margin-top:2rem;">✿ ✾ ✿</div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--soft);font-size:1rem;margin-top:0.5rem;">Wishing you a beautiful year ahead 🌸</p>
+  </div>
+</div>
+
+</div><script>
+// ===== SUPABASE SETTINGS: UPDATE THESE TWO LINES =====
+const SUPABASE_URL = 'https://xjkdpjaubkzmruuzuhxi.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhqa2RwamF1Ymt6bXJ1dXp1aHhpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ1MzY5NjgsImV4cCI6MjA5MDExMjk2OH0.IHlvbAJyIJf_5XuPuKfywOBd9sb8wXmXhqu4FWaOoyE';
+
+// ===== VIEW ROUTING =====
+const ORGANIZER_PIN = "1234"; // Change this if you want a different PIN
+
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+  if (name === 'reveal') loadReveal();
+}
+
+// Check URL on load
+(function init() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('v') === 'reveal') showView('reveal');
+})();
+
+// ===== WRITE NOTE =====
+async function submitNote() {
+  const name = document.getElementById('input-name').value.trim();
+  const message = document.getElementById('input-message').value.trim();
+  const photoInput = document.getElementById('input-photo');
+  const btn = document.getElementById('submit-btn');
+  const err = document.getElementById('write-error');
+
+  if (!message || !name) { showErr(err, 'Please write your name and a message first 💌'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending... (Photos take a moment)';
+  err.style.display = 'none';
+
+  try {
+    let photoUrl = null;
+
+    if (photoInput.files.length > 0) {
+        const file = photoInput.files[0];
+        const ext = file.name.split('.').pop();
+        const fileName = Math.random().toString(36).substring(2) + Date.now() + '.' + ext;
+        
+        const uploadRes = await fetch(`${SUPABASE_URL}/storage/v1/object/photos/${fileName}`, {
+            method: 'POST',
+            headers: {
+                'apikey': SUPABASE_KEY,
+                'Authorization': `Bearer ${SUPABASE_KEY}`,
+                'Content-Type': file.type
+            },
+            body: file
+        });
+        if (!uploadRes.ok) throw new Error('Image upload failed');
+        photoUrl = `${SUPABASE_URL}/storage/v1/object/public/photos/${fileName}`;
+    }
+
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/notes`, {
+        method: 'POST',
+        headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ name, message, photo_url: photoUrl })
+    });
+
+    if (!res.ok) throw new Error('Database error');
+    
+    document.getElementById('note-form-area').style.display = 'none';
+    document.getElementById('success-area').style.display = 'block';
+  } catch (e) {
+    showErr(err, 'Something went wrong connecting to the database. Please try again 🌷');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send with love 🌹';
+  }
+}
+
+function resetForm() {
+  document.getElementById('input-name').value = '';
+  document.getElementById('input-message').value = '';
+  document.getElementById('input-photo').value = '';
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = false; btn.textContent = 'Send with love 🌹';
+  document.getElementById('note-form-area').style.display = 'block';
+  document.getElementById('success-area').style.display = 'none';
+}
+
+function showErr(el, msg) { el.textContent = msg; el.style.display = 'block'; }
+
+// ===== PIN =====
+function pinStep(el, nextId) { if (el.value && nextId) document.getElementById(nextId).focus(); }
+function pinBack(e, prevId) { if (e.key === 'Backspace' && !e.target.value) document.getElementById(prevId)?.focus(); }
+
+async function checkPin() {
+  const pin = ['p1','p2','p3','p4'].map(id => document.getElementById(id).value).join('');
+  const err = document.getElementById('pin-err');
+
+  if (pin !== ORGANIZER_PIN) {
+    err.textContent = 'Incorrect PIN.';
+    err.style.display = 'block'; 
+    return; 
+  }
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/notes?select=*&order=created_at.asc`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    if (!res.ok) throw new Error('Fetch failed');
+    const notes = await res.json();
+    
+    err.style.display = 'none';
+    document.getElementById('pin-gate').style.display = 'none';
+    document.getElementById('notes-panel').style.display = 'block';
+
+    const base = window.location.origin + window.location.pathname;
+    document.getElementById('share-link-text').textContent = base + '?v=reveal';
+    renderOrgNotes(notes);
+  } catch {
+    err.textContent = 'Could not connect to database. Try again.';
+    err.style.display = 'block';
+  }
+}
+
+function renderOrgNotes(notes) {
+  const c = document.getElementById('notes-list-container');
+  if (!notes.length) {
+    c.innerHTML = '<div class="empty-state">No notes yet — share the link with friends! 🌷</div>';
+    return;
+  }
+  c.innerHTML = `<p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--soft);font-size:0.95rem;margin-bottom:1rem;">${notes.length} note${notes.length>1?'s':''} collected 🌸</p>` +
+    notes.map((n, i) => `
+      <div class="note-envelope">
+        <div class="note-from">From: ${esc(n.name)}</div>
+        <div class="note-time">${new Date(n.created_at).toLocaleString()}</div>
+        <div class="note-content-blurred" id="nc-${i}">${esc(n.message)}</div>
+        <div class="note-blur-label">Private — blurred to protect Ishrat's surprise</div>
+        <button class="reveal-toggle" onclick="toggleBlur(${i},this)">Peek (you're the organizer)</button>
+      </div>`).join('');
+}
+
+function toggleBlur(i, btn) {
+  const el = document.getElementById('nc-' + i);
+  const isBlurred = el.style.filter !== 'none' && el.style.filter !== '';
+  el.style.filter = isBlurred ? 'none' : 'blur(5px)';
+  btn.textContent = isBlurred ? 'Re-blur' : "Peek (you're the organizer)";
+}
+
+// ===== REVEAL =====
+async function loadReveal() {
+  const c = document.getElementById('reveal-notes');
+  c.innerHTML = '<div class="loading-dots">Loading your notes... 🌷</div>';
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/notes?select=*&order=created_at.asc`, {
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
+    });
+    const notes = await res.json();
+    if (!notes.length) {
+      c.innerHTML = '<div class="loading-dots">Notes are on their way... 🌷</div>';
+      return;
+    }
+    c.innerHTML = notes.map((n, i) => `
+      <div class="reveal-envelope" style="--delay:${i*0.15}s">
+        <div class="reveal-from">💌 From ${esc(n.name)}</div>
+        <div class="reveal-note-text">${esc(n.message)}</div>
+        ${n.photo_url ? `<img src="${n.photo_url}" class="reveal-note-photo" alt="Photo from ${esc(n.name)}">` : ''}
+      </div>`).join('');
+  } catch {
+    c.innerHTML = '<div class="loading-dots">Could not load notes right now. Try refreshing 🌷</div>';
+  }
+}
+
+// ===== COPY =====
+function copyLink() {
+  const link = document.getElementById('share-link-text').textContent;
+  navigator.clipboard.writeText(link).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = 'Copied! ✓';
+    setTimeout(() => btn.textContent = 'Copy link', 2000);
+  });
+}
+
+// ===== HELPERS =====
+function esc(str) {
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/\n/g,'<br>');
+}
+</script>
+</body>
+</html>
